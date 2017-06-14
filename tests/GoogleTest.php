@@ -14,7 +14,7 @@ class GoogleTest extends \TravisPoc\ConsoleTestCase
      */
     public function checkGoogleResponse()
     {
-        $agent = $_SERVER['AGENT_PARAMETER'];
+        $agent = $_SERVER['AGENT'];
 
         curl_setopt_array($this->curl, array(
             CURLOPT_URL => "http://www.zive.cz/",
