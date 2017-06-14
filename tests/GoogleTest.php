@@ -14,7 +14,8 @@ class GoogleTest extends \TravisPoc\ConsoleTestCase
      */
     public function checkGoogleResponse()
     {
-        $agent = $_ENV['agent'];
+        $agent = $_SERVER['AGENT_PARAMETER'];
+
         curl_setopt_array($this->curl, array(
             CURLOPT_URL => "http://www.zive.cz/",
             CURLOPT_RETURNTRANSFER => true,
@@ -32,7 +33,6 @@ class GoogleTest extends \TravisPoc\ConsoleTestCase
         ));
 
         $response = curl_exec($this->curl);
-        $err = curl_error($this->curl);
         curl_close($this->curl);
 
         $this->assertRegexp('/O počítačích, IT a internetu - Živě.cz/', $response);

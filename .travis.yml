@@ -1,0 +1,32 @@
+language: php
+
+php:
+  - 7.1
+
+env:
+  - AGENT="chrome"
+  - AGENT="firefox"
+  - AGENT="iexplorer"
+
+matrix:
+  exclude:
+    - php: 7.1
+      env: AGENT="iexplorer"
+
+#services:
+#  - redis-server
+
+before_install:
+  - composer self-update
+
+install:
+  - composer install --no-interaction --prefer-source
+
+#before_script:
+
+script:
+  - ./vendor/bin/phpunit -c phpunit.xml tests/
+
+after_failure:
+  # Vytiskne obsah souborů *.actual
+  - echo ok
